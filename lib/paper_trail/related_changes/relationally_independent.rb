@@ -1,9 +1,9 @@
-class ActiveRecord::Base
-  def self.relationally_independent=(value)
+module PaperTrail::RelatedChanges::RelationallyIndependent
+  def relationally_independent=(value)
     @relationally_independent = value
   end
 
-  def self.relationally_independent?
+  def relationally_independent?
     if instance_variable_defined? :@relationally_independent
       @relationally_independent
     else
@@ -11,3 +11,4 @@ class ActiveRecord::Base
     end
   end
 end
+

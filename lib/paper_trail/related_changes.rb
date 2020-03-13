@@ -1,7 +1,7 @@
-require "paper_trail/related_changes/engine"
 require 'paper_trail/frameworks/active_record/models/paper_trail/version'
-require 'paper_trail/related_changes/model'
-require 'paper_trail/related_changes/active_record/base'
+require 'paper_trail/related_changes/relationally_independent'
+require 'paper_trail/related_changes/version_model'
+require "paper_trail/related_changes/engine"
 require "paper_trail/related_changes/serializer"
 require "paper_trail/related_changes/grouped_by_request_id"
 require "paper_trail/related_changes/hierarchy"
