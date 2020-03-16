@@ -9,11 +9,15 @@ module PaperTrail
                   :item_type,
                   :limit
 
-      def initialize(item_type: nil, type: nil, item_id: nil, id: nil, limit: nil)
-        @item_type   = (item_type || type).underscore.classify
-        @item_id     = item_id || id
-        @limit       = Integer([limit, 1_000].reject(&:blank?).first)
-        @append_root = true
+      def initialize(item_type: nil,
+                     type: nil,
+                     item_id: nil,
+                     id: nil,
+                     limit: nil)
+        @item_type         = (item_type || type).underscore.classify
+        @item_id           = item_id || id
+        @limit             = Integer([limit, 1_000].reject(&:blank?).first)
+        @append_root       = true
       end
 
       def to_a
@@ -47,7 +51,7 @@ module PaperTrail
           SELECT json_agg(hierarchy_versions ORDER BY (rank, item_type, item_id, id)) AS versions,
                  MIN(hierarchy_versions.created_at) as created_at,
                  request_id
-             FROM (#{RelatedChanges::Hierarchy::Query.call(model_class, item_id)}) AS hierarchy_versions
+             FROM (#{hierarchy.find_by_id(item_id)}) AS hierarchy_versions
              GROUP BY request_id
              ORDER BY created_at DESC
              LIMIT #{conn.quote(limit)}
@@ -67,7 +71,7 @@ module PaperTrail
         requested_root_version = nil
         versions               = JSON.parse(result["versions"]).map do |version|
           record                 = convert_to_record(version)
-          requested_root_version = record if record.item_id == item_id && record.item_type == model_name
+          requested_root_version = record if record.item_id == item_id.to_s && record.item_type == model_name
           record
         end
         @append_root           = false if requested_root_version == last_root

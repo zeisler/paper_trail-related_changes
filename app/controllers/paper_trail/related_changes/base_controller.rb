@@ -12,13 +12,13 @@ module PaperTrail
           limit: limit,
           **params.permit!.to_h.symbolize_keys.slice(
             :type,
-            :id
+            :id,
           )
         )
       end
 
       def limit
-        params.dig('page', 'size')
+        params[:limit] || params.dig('page', 'size')
       end
     end
   end

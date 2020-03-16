@@ -15,12 +15,14 @@ module PaperTrail
         end
       end
 
-      attr_reader :model, :include_parent_as_child, :only_include_children
+      attr_reader :model
 
-      def initialize(model, include_parent_as_child: [], only_include_children: nil)
-        @model                   = model
-        @include_parent_as_child = include_parent_as_child
-        @only_include_children   = only_include_children
+      def initialize(model)
+        @model = model
+      end
+
+      def find_by_id(id)
+        Query.call(model, id)
       end
 
       # Find the node that matches the item_type
@@ -46,8 +48,7 @@ module PaperTrail
 
       def model_type_children
         @model_type_children ||= model.reflections.each_with_object({}) do |(name, rel), result|
-          next unless whitelisted_child?(name)
-          next if !include_parent?(name) && source_reflection(rel).belongs_to? # Only Looking for downward relations. (Children not parents)
+          next if source_reflection(rel).belongs_to? # Only Looking for downward relations. (Children not parents)
           next if name == PaperTrail::Version.table_name
           result[name.to_sym] = source_reflection(rel)
         end

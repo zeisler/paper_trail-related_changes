@@ -2,5 +2,5 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :items, class_name: 'OrderItem'
 
-  has_many :notes, dependent: :destroy, foreign_key: :notable_id, as: :notable
+  has_one :note, as: :notable
 end

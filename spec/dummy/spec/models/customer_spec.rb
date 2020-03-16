@@ -8,15 +8,15 @@ RSpec.describe Customer do
            :children => [
              { :children => [
                { :children => [
-                 { :name => :notes, :type => "Note" }
+                 { :name => :note, :type => "Note" }
                ],
                  :name     => :items, :type => "OrderItem"
                },
-               { :name => :notes, :type => "Note" }
+               { :name => :note, :type => "Note" }
              ],
                :name     => :orders, :type => "Order"
              },
-             { :name => :notes, :type => "Note" }
+             { :name => :note, :type => "Note" }
            ],
            :name     => "Customer",
            :type     => "Customer",

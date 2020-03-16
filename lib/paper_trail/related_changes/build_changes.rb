@@ -48,7 +48,7 @@ module PaperTrail
       def change_with_root(request_id, root_version, versions_serialized)
         s                   = Serializer.new(root_version, item_type: root_version.item_type, root_type: item_type)
         s.change.diffs      = [*s.change.diffs, *attribute_version_changes(versions_serialized)]
-        s.change.version_id = request_id
+        s.change.version_id = request_id || root_version.request_id
         s
       end
 

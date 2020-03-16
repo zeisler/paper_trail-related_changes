@@ -16,10 +16,10 @@ RSpec.describe BuyingGroup do
                      :type     => "Order", :name => :orders,
                      :children => [
                        { :type => "OrderItem", :name => :items },
-                       { :type => "Note", :name => :notes }
+                       { :type => "Note", :name => :note }
                      ]
                    },
-                   { :type => "Note", :name => :notes }
+                   { :type => "Note", :name => :note }
                  ]
                }
              ]

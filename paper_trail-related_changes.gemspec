@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Dustin Zeisler"]
   spec.email       = ["dustin@zeisler.net"]
   spec.homepage    = "https://github.com/zeisler/paper_trail-related_changes"
-  spec.summary     = "Groups and formats changes that are recorded with PaperTrail"
-  spec.description = "Find all child ActiveRecord relationships from a given resource."
+  spec.summary     = "Groups and formats related changes that are recorded with PaperTrail"
+  spec.description = "Find all child ActiveRecord relationships from a given resource and groups thems by request_id."
   spec.license     = "MIT"
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

@@ -11,10 +11,10 @@ RSpec.describe Order do
                {
                  :type     => "OrderItem", :name => :items,
                  :children => [
-                   { :type => "Note", :name => :notes }
+                   { :type => "Note", :name => :note }
                  ]
                },
-               { :type => "Note", :name => :notes }
+               { :type => "Note", :name => :note }
              ]
            }
          )
