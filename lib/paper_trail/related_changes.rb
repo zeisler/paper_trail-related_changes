@@ -1,15 +1,16 @@
 require 'paper_trail/frameworks/active_record/models/paper_trail/version'
-require 'paper_trail/related_changes/relationally_independent'
-require 'paper_trail/related_changes/version_model'
-require "paper_trail/related_changes/engine"
-require "paper_trail/related_changes/serializer"
-require "paper_trail/related_changes/grouped_by_request_id"
-require "paper_trail/related_changes/hierarchy"
-require "paper_trail/related_changes/build_changes"
-require "paper_trail/related_changes/version"
 
 module PaperTrail
   module RelatedChanges
+    require 'paper_trail/related_changes/relationally_independent'
+    require 'paper_trail/related_changes/version_model'
+    require "paper_trail/related_changes/engine"
+    require "paper_trail/related_changes/serializer"
+    require "paper_trail/related_changes/grouped_by_request_id"
+    require "paper_trail/related_changes/hierarchy"
+    require "paper_trail/related_changes/build_changes"
+    require "paper_trail/related_changes/version"
+
     def self.serializers
       @serializers ||= [
         Serializer::Skippable,
